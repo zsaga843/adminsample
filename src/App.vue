@@ -1,28 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app app>
+    <component v-bind:is="layout"></component>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import AppLayout from './layouts/AppLayout'
+import FullLayout from './layouts/FullLayout'
 export default {
-  name: 'App',
+  computed: {
+    layout () {
+      return this.$store.getters.layout
+    }
+  },
   components: {
-    HelloWorld
+    'app-layout': AppLayout,
+    'full-layout': FullLayout
+    // define as many layouts you want for the application
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
